@@ -1,0 +1,57 @@
+<html>
+<head>
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="jquery-css-transform.js" type="text/javascript"></script>
+	<script src="jquery-animate-css-rotate-scale.js" type="text/javascript"></script>
+	
+	
+	
+</head>
+<body>
+	<button id="blog" type="button">Bloggers</button>
+	<button id="business" type="button" disabled="disabled">Business</button>
+	
+<div style="margin: 100px; position:absolute;">
+	<div id="pointless" style="background-color:#fcbe54; width: 300px; height: 350px; color:#fff; position:absolute; float:left; z-index:1;">Pointless</div>
+	<div id="bloggers" style="background-color:#c6eb78; width: 300px; height: 350px; color:#fff; position:absolute; float:left; z-index:2;">Blogger</div>
+	<div id="businesses" style="background-color:#cbb53f; width: 300px; height: 350px; color:#fff; position:absolute; float:left; z-index:3;">Business</div>
+</div>
+
+
+<script>
+	//$('#example').rotate('30deg'); // rotates to 30deg
+	//$('#example').scale(1.5); // scales to 150%
+	$('#pointless').rotate('-30deg'); // rotates to 45deg
+	$('#bloggers').rotate('-15deg'); // rotates to 45deg
+	
+	$('#blog').click(function() {	
+		 $("#blog").attr("disabled", "disabled");	
+		$('#business').removeAttr("disabled");
+		  $('#businesses').animate({
+		    left: '+=400',
+		  }, 500, function() {
+		    $('#bloggers').css("z-index", 3).animate({rotate: '+=15deg'}, 500);
+				$('#businesses').css("z-index", 2).animate({left: '-=400'}, 500, function() {
+			    $('#businesses').animate({rotate: '-=15deg'}, 500); 
+			  });
+		  });			
+	});
+
+	$('#business').click(function() {	
+		 $("#business").attr("disabled", "disabled");	
+			$('#blog').removeAttr("disabled");
+			
+		  $('#bloggers').animate({
+		    left: '+=400',
+		  }, 500, function() {
+		    $('#businesses').css("z-index", 3).animate({rotate: '+=15deg'}, 500);
+				$('#bloggers').css("z-index", 2).animate({left: '-=400'}, 500, function() {
+			    $('#bloggers').animate({rotate: '-=15deg'}, 500); 
+			  });
+		  });			
+	});
+
+</script>
+
+</body>
+</html>
